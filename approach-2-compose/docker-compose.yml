@@ -1,0 +1,55 @@
+services:
+  floci-aws:
+    image: floci/floci:latest
+    container_name: floci
+    ports:
+      - "4566:4566"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  floci-az:
+    image: floci/floci-az:latest
+    container_name: floci-az
+    ports:
+      - "4577:4577"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  floci-gcp:
+    image: floci/floci-gcp:latest
+    container_name: floci-gcp
+    ports:
+      - "4588:4588"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  floci-oci:
+    image: floci/floci-oci:latest
+    container_name: floci-oci
+    ports:
+      - "4599:4599"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  floci-ui:
+    image: floci/floci-ui:latest
+    container_name: floci-aws-ui
+    network_mode: host
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ENDPOINT_URL=http://localhost:4566
+      - FLOCI_AZURE_ENDPOINT=http://localhost:4577
+      - FLOCI_GCP_ENDPOINT=http://localhost:4588
+      - FLOCI_OCI_ENDPOINT=http://localhost:4599
+    depends_on:
+      - floci-aws
+      - floci-az
+      - floci-gcp
+      - floci-oci
+    restart: unless-stopped

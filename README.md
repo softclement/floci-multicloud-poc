@@ -131,7 +131,7 @@ wsl -l -v
 floci-multicloud-poc/
 ├── README.md
 ├── LICENSE
-├── docs/                      # screenshots
+├── docs/                      # screenshots (file names are case-sensitive)
 ├── approach-1-script/
 │   ├── install.sh
 │   └── cleanup.sh
@@ -348,6 +348,8 @@ UI     port 4500  -> HTTP 200
 
 - Confirmed from a real run: all four health endpoints return **HTTP 200**
 
+![Smoke test output](docs/SmokeTest.jpg)
+
 ### Browser
 
 - Open `http://localhost:4500/console/aws`
@@ -443,10 +445,21 @@ How to read it:
 
 ### Screenshots
 
-| | |
+**Web console** (`http://localhost:4500/console/...`)
+
+| AWS | Azure |
 |---|---|
-| ![AWS console](docs/console-aws.png) | ![Azure console](docs/console-azure.png) |
-| ![GCP console](docs/console-gcp.png) | ![OCI console](docs/console-oci.png) |
+| ![AWS console](docs/Console-AWS.png) | ![Azure console](docs/Console-Azure.png) |
+
+| GCP | OCI |
+|---|---|
+| ![GCP console](docs/Console-GCP.png) | ![OCI console](docs/Console-OCI.png) |
+
+**API endpoints in the browser** (`http://localhost:4566/` and `http://localhost:4577/`)
+
+| AWS | Azure |
+|---|---|
+| ![AWS API endpoint](docs/API-EndPoint-AWS.png) | ![Azure API endpoint](docs/API-EndPoint-AZURE.png) |
 
 ---
 
